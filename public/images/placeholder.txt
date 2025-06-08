@@ -1,0 +1,12 @@
+This directory contains product and category images.
+
+Required images:
+- hero-bg.jpg
+- wall-art.jpg
+- rugs.jpg
+- mirrors.jpg
+- sculptures.jpg
+- abstract-art.jpg
+- persian-rug.jpg
+- wall-mirror.jpg
+- bronze-sculpture.jpg 
