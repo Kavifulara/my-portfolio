@@ -5,7 +5,7 @@ export default function PortfolioHero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm Kavya
+              Hi, We are Dev OP's
             </h1>
             <p className="mt-6 text-xl text-gray-300 max-w-3xl">
               Interior Designer & Decor Specialist
@@ -18,7 +18,7 @@ export default function PortfolioHero() {
                 href="#contact"
                 className="bg-secondary hover:bg-opacity-90 text-white px-6 py-3 rounded-lg font-medium"
               >
-                Contact Me
+                Contact Us
               </a>
               <a
                 href="#projects"

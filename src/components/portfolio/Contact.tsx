@@ -5,7 +5,7 @@ export default function Contact() {
     <section id="contact" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-primary">Contact Me</h2>
+          <h2 className="text-3xl font-bold text-primary">Contact us</h2>
           <div className="mt-2 h-1 w-20 bg-secondary mx-auto"></div>
           <p className="mt-4 text-lg text-gray-600">
             Let's discuss your next project
@@ -15,7 +15,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold text-primary mb-6">Send Me a Message</h3>
+              <h3 className="text-xl font-semibold text-primary mb-6">Send us a Message</h3>
               <form className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">

@@ -19,7 +19,7 @@ export default function Hero() {
         </p>
         <div className="mt-10">
           <Link
-            href="/category/all"
+            href="/shop"
             className="inline-block bg-secondary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
           >
             Shop Now
