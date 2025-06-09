@@ -31,7 +31,7 @@ export default function PortfolioHero() {
           <div className="relative">
             <div className="aspect-w-1 aspect-h-1 rounded-full overflow-hidden">
               <img
-                src="/images/portfolio/profile.jpg"
+                src="/images/portfolio/profile.png"
                 alt="Kavya - Interior Designer"
                 className="w-full h-full object-cover"
               />
