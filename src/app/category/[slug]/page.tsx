@@ -83,14 +83,78 @@ const categories = {
         id: 8,
         name: 'Modern Abstract Sculpture',
         price: 349.99,
-        image: '/images/abstract-sculpture.jpg',
+        image: '/images/modern-abstract-sculpture.png',
         description: 'Contemporary abstract sculpture in metal finish.',
       },
-      // Add more products as needed
+      {
+        id: 9,
+        name: 'Lord Buddha sculpture',
+        price: 149.99,
+        image: '/images/Buddha.jpg',
+        description: 'Lord Buddha.',
+      },
+      {
+        id: 10,
+        name: 'Lord Hanuman sculpture',
+        price: 249.99,
+        image: '/images/Lord-Hanuman.jpg',
+        description: 'Hanuman ji.',
+      },
     ],
   },
-}
-
+  'curtains': {
+    title: 'Curtains',
+    description: 'Lovely curtains to match your home environment ',
+    products: [
+      {
+        id: 11,
+        name: 'Red curtains',
+        price: 199.99,
+        image: '/images/curtains.jpg',
+        description: 'Beautiful curtain to suit your home.',
+      },
+    ],
+  },
+  'clocks': {
+    title: 'Clocks',
+    description: 'Lovely clocks to match your home environment ',
+    products: [
+      {
+        id: 12,
+        name: 'Round clock',
+        price: 199.99,
+        image: '/images/clock.jpg',
+        description: 'classic round clock.',
+      },
+    ],
+  },
+  'paintings': {
+    title: 'Paintings',
+    description: 'Lovely paintings ',
+    products: [
+      {
+        id: 13,
+        name: 'Animal painting',
+        price: 199.99,
+        image: '/images/painting.jpg',
+        description: 'Amazing animal painting.',
+      },
+    ],
+  },
+  'posters': {
+    title: 'Posters',
+    description: 'Posters that will fill your lonely walls.',
+    products: [
+      {
+        id: 14,
+        name: 'Multi image poster',
+        price: 199.99,
+        image: '/images/posters.jpg',
+        description: 'Beautiful poster to suit your wall.',  
+      },
+    ],
+  },
+}                   
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const category = categories[params.slug as keyof typeof categories]
 
@@ -128,7 +192,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                   <span className="text-2xl font-bold text-primary">
                     ${product.price}
                   </span>
-                  <AddToCartButton />
+                  <AddToCartButton product={product} />
                 </div>
               </div>
             </div>

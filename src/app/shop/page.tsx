@@ -66,7 +66,7 @@ const allProducts = [
     id: 8,
     name: 'Abstract Sculpture',
     price: 349.99,
-    image: '/images/abstract-sculpture.jpg',
+    image: '/images/modern-abstract-sculpture.png',
     category: 'Sculptures',
     href: '/product/abstract-sculpture',
   },

@@ -1,12 +1,24 @@
 'use client'
 
-export default function AddToCartButton() {
+import { useCart } from '@/context/CartContext'
+
+interface AddToCartButtonProps {
+  product: {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+  };
+}
+
+export default function AddToCartButton({ product }: AddToCartButtonProps) {
+  const { addToCart } = useCart();
+
   return (
     <button
       className="w-full bg-secondary text-white py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors"
       onClick={() => {
-        // Add to cart functionality will be implemented later
-        alert('Added to cart!')
+        addToCart(product);
       }}
     >
       Add to Cart

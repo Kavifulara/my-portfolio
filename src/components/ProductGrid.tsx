@@ -78,7 +78,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                   <span className="text-lg font-medium text-primary">
                     ${product.price}
                   </span>
-                  <AddToCartButton />
+                  <AddToCartButton product={product} />
                 </div>
               </div>
             </Link>

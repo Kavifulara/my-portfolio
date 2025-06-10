@@ -9,6 +9,11 @@ const popularCategories = [
   { name: 'Rugs', href: '/category/rugs' },
   { name: 'Mirrors', href: '/category/mirrors' },
   { name: 'Sculptures', href: '/category/sculptures' },
+  { name: 'Paintings', href: '/category/paintings' },
+  { name: 'Curtains', href: '/category/curtains' },
+  { name: 'Clocks', href: '/category/clocks' },
+  { name: 'Posters', href: '/category/posters' },
+
 ]
 
 const allProducts = [

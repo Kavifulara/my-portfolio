@@ -111,7 +111,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
 
             <div className="space-y-4">
-              <AddToCartButton />
+              <AddToCartButton product={product} />
               <button className="w-full border border-primary text-primary py-3 px-8 rounded-lg hover:bg-primary hover:text-white transition-colors">
                 Add to Wishlist
               </button>

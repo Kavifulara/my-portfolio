@@ -1,41 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-
-// This would typically come from a cart state management system
-const initialCartItems = [
-  {
-    id: 1,
-    name: 'Abstract Canvas Art',
-    price: 199.99,
-    image: '/images/abstract-art.jpg',
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: 'Vintage Persian Rug',
-    price: 499.99,
-    image: '/images/persian-rug.jpg',
-    quantity: 1,
-  },
-]
+import { useCart } from '@/context/CartContext'
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState(initialCartItems)
-
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    )
-  }
-
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id))
-  }
+  const { cartItems, updateQuantity, removeItem } = useCart();
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -75,13 +44,13 @@ export default function CartPage() {
                     className="flex items-center p-6 border-b border-gray-200 last:border-0"
                   >
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      src={item.image as any}
+                      alt={item.name as any}
                       className="w-24 h-24 object-cover rounded-lg"
                     />
                     <div className="flex-1 ml-6">
                       <h3 className="text-lg font-medium text-gray-900">
-                        {item.name}
+                        {item.name as any}
                       </h3>
                       <p className="text-gray-600">${item.price}</p>
                       <div className="flex items-center mt-2">

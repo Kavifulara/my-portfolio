@@ -25,18 +25,6 @@ const categories = [
     image: '/images/sculptures.jpg',
     href: '/category/sculptures',
   },
-  {
-    id: 5,
-    name: 'Sculptures',
-    image: '/images/sculptures1.jpg',
-    href: '/category/sculptures',
-  },
-  {
-    id: 6,
-    name: 'Sculptures',
-    image: '/images/sculptures2.jpg',
-    href: '/category/sculptures',
-  },
 ]
 
 export default function Categories() {
