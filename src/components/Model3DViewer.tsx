@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
+import dynamic from 'next/dynamic';
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url);
@@ -13,7 +14,7 @@ interface Model3DViewerProps {
   modelPath: string;
 }
 
-export default function Model3DViewer({ modelPath }: Model3DViewerProps) {
+function Viewer({ modelPath }: Model3DViewerProps) {
   return (
     <div className="w-full h-[400px] bg-gray-100 rounded-lg">
       <Canvas
@@ -29,4 +30,7 @@ export default function Model3DViewer({ modelPath }: Model3DViewerProps) {
       </Canvas>
     </div>
   );
-} 
+}
+
+// Export a dynamic version of the component with SSR disabled
+export default dynamic(() => Promise.resolve(Viewer), { ssr: false }); 

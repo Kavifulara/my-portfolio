@@ -1,6 +1,7 @@
 'use client'
 
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import AddToCartButton from '@/components/AddToCartButton'
 
 // This would typically come from a database or API
@@ -15,6 +16,7 @@ const categories = {
         price: 199.99,
         image: '/images/abstract-art.jpg',
         description: 'Modern abstract art piece perfect for contemporary spaces.',
+        category: 'Wall Art'
       },
       {
         id: 2,
@@ -22,6 +24,7 @@ const categories = {
         price: 149.99,
         image: '/images/vintage-print.jpg',
         description: 'Classic vintage print with timeless appeal.',
+        category: 'Wall Art'
       },
       // Add more products as needed
     ],
@@ -36,6 +39,7 @@ const categories = {
         price: 499.99,
         image: '/images/persian-rug.jpg',
         description: 'Traditional Persian-style rug with intricate patterns.',
+        category: 'Rugs'
       },
       {
         id: 4,
@@ -43,6 +47,7 @@ const categories = {
         price: 299.99,
         image: '/images/geometric-rug.jpg',
         description: 'Contemporary rug with bold geometric patterns.',
+        category: 'Rugs'
       },
       // Add more products as needed
     ],
@@ -57,6 +62,7 @@ const categories = {
         price: 299.99,
         image: '/images/wall-mirror.jpg',
         description: 'Elegant wall mirror with ornate frame.',
+        category: 'Mirrors'
       },
       {
         id: 6,
@@ -64,6 +70,7 @@ const categories = {
         price: 249.99,
         image: '/images/round-mirror.jpg',
         description: 'Sleek round mirror with minimalist design.',
+        category: 'Mirrors'
       },
       // Add more products as needed
     ],
@@ -78,6 +85,7 @@ const categories = {
         price: 399.99,
         image: '/images/bronze-sculpture.jpg',
         description: 'Beautiful bronze sculpture for indoor display.',
+        category: 'Sculptures'
       },
       {
         id: 8,
@@ -85,6 +93,7 @@ const categories = {
         price: 349.99,
         image: '/images/modern-abstract-sculpture.png',
         description: 'Contemporary abstract sculpture in metal finish.',
+        category: 'Sculptures'
       },
       {
         id: 9,
@@ -92,6 +101,7 @@ const categories = {
         price: 149.99,
         image: '/images/Buddha.jpg',
         description: 'Lord Buddha.',
+        category: 'Sculptures'
       },
       {
         id: 10,
@@ -99,6 +109,7 @@ const categories = {
         price: 249.99,
         image: '/images/Lord-Hanuman.jpg',
         description: 'Hanuman ji.',
+        category: 'Sculptures'
       },
     ],
   },
@@ -112,6 +123,7 @@ const categories = {
         price: 199.99,
         image: '/images/curtains.jpg',
         description: 'Beautiful curtain to suit your home.',
+        category: 'Curtains'
       },
     ],
   },
@@ -125,6 +137,7 @@ const categories = {
         price: 199.99,
         image: '/images/clock.jpg',
         description: 'classic round clock.',
+        category: 'Clocks'
       },
     ],
   },
@@ -138,6 +151,7 @@ const categories = {
         price: 199.99,
         image: '/images/painting.jpg',
         description: 'Amazing animal painting.',
+        category: 'Paintings'
       },
     ],
   },
@@ -150,7 +164,8 @@ const categories = {
         name: 'Multi image poster',
         price: 199.99,
         image: '/images/posters.jpg',
-        description: 'Beautiful poster to suit your wall.',  
+        description: 'Beautiful poster to suit your wall.',
+        category: 'Posters'
       },
     ],
   },
@@ -172,8 +187,9 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {category.products.map((product) => (
-            <div
+            <Link
               key={product.id}
+              href={`/product/${product.id}`}
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
             >
               <div className="aspect-w-4 aspect-h-3">
@@ -195,7 +211,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                   <AddToCartButton product={product} />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

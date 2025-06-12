@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import AddToCartButton from './AddToCartButton'
 
 const products = [
   {
@@ -7,31 +8,31 @@ const products = [
     price: 199.99,
     image: '/images/abstract-art.jpg',
     category: 'Wall Art',
-    href: '/product/abstract-canvas-art',
-  },
-  {
-    id: 2,
-    name: 'Vintage Persian Rug',
-    price: 499.99,
-    image: '/images/persian-rug.jpg',
-    category: 'Rugs',
-    href: '/product/vintage-persian-rug',
+    description: 'Modern abstract art piece perfect for contemporary spaces.',
   },
   {
     id: 3,
+    name: 'Persian Style Rug',
+    price: 499.99,
+    image: '/images/persian-rug.jpg',
+    category: 'Rugs',
+    description: 'Traditional Persian-style rug with intricate patterns.',
+  },
+  {
+    id: 5,
     name: 'Decorative Wall Mirror',
     price: 299.99,
     image: '/images/wall-mirror.jpg',
     category: 'Mirrors',
-    href: '/product/decorative-wall-mirror',
+    description: 'Elegant wall mirror with ornate frame.',
   },
   {
-    id: 4,
-    name: 'Modern Bronze Sculpture',
+    id: 7,
+    name: 'Bronze Sculpture',
     price: 399.99,
     image: '/images/bronze-sculpture.jpg',
     category: 'Sculptures',
-    href: '/product/modern-bronze-sculpture',
+    description: 'Beautiful bronze sculpture for indoor display.',
   },
 ]
 
@@ -43,7 +44,7 @@ export default function FeaturedProducts() {
         {products.map((product) => (
           <Link
             key={product.id}
-            href={product.href}
+            href={`/product/${product.id}`}
             className="group"
           >
             <div className="relative">

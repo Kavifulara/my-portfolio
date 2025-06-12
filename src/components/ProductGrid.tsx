@@ -11,7 +11,7 @@ interface Product {
   price: number
   image: string
   category: string
-  href: string
+  description: string
 }
 
 interface ProductGridProps {
@@ -20,12 +20,13 @@ interface ProductGridProps {
 
 export default function ProductGrid({ products }: ProductGridProps) {
   const searchParams = useSearchParams()
-  const searchQuery = searchParams.get('search')
+  const query = searchParams?.get('q')?.toLowerCase() || ''
 
-  const filteredProducts = searchQuery
-    ? products.filter(product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = query
+    ? products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query)
       )
     : products
 
@@ -33,10 +34,10 @@ export default function ProductGrid({ products }: ProductGridProps) {
     <>
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-primary mb-4">
-          {searchQuery ? `Search Results for "${searchQuery}"` : 'All Products'}
+          {query ? `Search Results for "${query}"` : 'All Products'}
         </h1>
         <p className="text-lg text-gray-600">
-          {searchQuery
+          {query
             ? `Found ${filteredProducts.length} products matching your search`
             : 'Browse our complete collection of decorative items'}
         </p>
@@ -62,7 +63,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           {filteredProducts.map((product) => (
             <Link
               key={product.id}
-              href={product.href}
+              href={`/product/${product.id}`}
               className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
             >
               <div className="aspect-w-1 aspect-h-1 w-full">

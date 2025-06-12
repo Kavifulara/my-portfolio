@@ -13,106 +13,115 @@ const popularCategories = [
   { name: 'Curtains', href: '/category/curtains' },
   { name: 'Clocks', href: '/category/clocks' },
   { name: 'Posters', href: '/category/posters' },
-
 ]
 
 const allProducts = [
-  { name: 'Abstract Canvas Art', category: 'Wall Art', href: '/product/abstract-canvas-art' },
-  { name: 'Vintage Persian Rug', category: 'Rugs', href: '/product/vintage-persian-rug' },
-  { name: 'Decorative Wall Mirror', category: 'Mirrors', href: '/product/decorative-wall-mirror' },
-  { name: 'Modern Bronze Sculpture', category: 'Sculptures', href: '/product/modern-bronze-sculpture' },
-  { name: 'Modern Geometric Rug', category: 'Rugs', href: '/product/modern-geometric-rug' },
-  { name: 'Vintage Wall Print', category: 'Wall Art', href: '/product/vintage-wall-print' },
-  { name: 'Modern Round Mirror', category: 'Mirrors', href: '/product/modern-round-mirror' },
-  { name: 'Abstract Sculpture', category: 'Sculptures', href: '/product/abstract-sculpture' },
+  { id: 1, name: 'Abstract Canvas Art', category: 'Wall Art' },
+  { id: 3, name: 'Persian Style Rug', category: 'Rugs' },
+  { id: 5, name: 'Decorative Wall Mirror', category: 'Mirrors' },
+  { id: 7, name: 'Bronze Sculpture', category: 'Sculptures' },
+  { id: 2, name: 'Vintage Wall Print', category: 'Wall Art' },
+  { id: 4, name: 'Modern Geometric Rug', category: 'Rugs' },
+  { id: 6, name: 'Modern Round Mirror', category: 'Mirrors' },
+  { id: 8, name: 'Modern Abstract Sculpture', category: 'Sculptures' },
 ]
 
 export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
+  const [query, setQuery] = useState('')
+  const [showSuggestions, setShowSuggestions] = useState(false)
   const router = useRouter()
 
-  const filteredProducts = allProducts.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.category.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredProducts = query
+    ? allProducts.filter(product =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.category.toLowerCase().includes(query.toLowerCase())
+      )
+    : []
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    if (searchTerm.trim()) {
-      setIsSearching(false)
-      router.push(`/shop?search=${encodeURIComponent(searchTerm)}`)
+    if (query) {
+      router.push(`/shop?q=${encodeURIComponent(query)}`)
+      setShowSuggestions(false)
     }
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <form onSubmit={handleSearch} className="relative">
-        <div className="relative">
+    <div className="max-w-2xl mx-auto px-4">
+      <div className="relative">
+        <form onSubmit={handleSearch} className="relative">
           <input
             type="text"
-            value={searchTerm}
+            value={query}
             onChange={(e) => {
-              setSearchTerm(e.target.value)
-              setIsSearching(true)
+              setQuery(e.target.value)
+              setShowSuggestions(true)
             }}
-            onFocus={() => setIsSearching(true)}
+            onFocus={() => setShowSuggestions(true)}
+            className="w-full bg-white rounded-lg pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary"
             placeholder="Search for products..."
-            className="w-full py-3 pl-4 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
           />
           <button
             type="submit"
-            className="absolute right-0 top-0 h-full px-4 text-gray-500 hover:text-gray-700"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center"
           >
-            <MagnifyingGlassIcon className="h-5 w-5" />
+            <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
           </button>
-        </div>
+        </form>
 
-        {/* Search Results Dropdown */}
-        {isSearching && (
-          <div className="absolute z-50 w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200">
-            {searchTerm ? (
-              filteredProducts.length > 0 ? (
-                <div className="py-2">
-                  {filteredProducts.map((product, index) => (
+        {showSuggestions && query && (
+          <div
+            className="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg"
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            <div className="p-4">
+              <h3 className="text-sm font-medium text-gray-900">Products</h3>
+              <ul className="mt-2 space-y-2">
+                {filteredProducts.map((product) => (
+                  <li key={product.id}>
                     <button
-                      key={index}
+                      className="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
                       onClick={() => {
-                        setIsSearching(false)
-                        router.push(product.href)
+                        router.push(`/product/${product.id}`)
+                        setShowSuggestions(false)
+                        setQuery('')
                       }}
-                      className="w-full px-4 py-2 text-left hover:bg-gray-100"
                     >
-                      <div className="text-gray-900">{product.name}</div>
-                      <div className="text-sm text-gray-500">in {product.category}</div>
+                      <span className="text-sm text-gray-900">{product.name}</span>
+                      <span className="ml-2 text-xs text-gray-500">
+                        in {product.category}
+                      </span>
                     </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="p-4 text-gray-500">No products found</div>
-              )
-            ) : (
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-gray-900 mb-2">Popular Categories</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {popularCategories.map((category, index) => (
+                  </li>
+                ))}
+              </ul>
+
+              {filteredProducts.length === 0 && (
+                <p className="text-sm text-gray-500 mt-2">No products found</p>
+              )}
+
+              <div className="mt-4 pt-4 border-t">
+                <h3 className="text-sm font-medium text-gray-900">Categories</h3>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {popularCategories.map((category) => (
                     <button
-                      key={index}
+                      key={category.href}
+                      className="text-xs text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200"
                       onClick={() => {
-                        setIsSearching(false)
                         router.push(category.href)
+                        setShowSuggestions(false)
+                        setQuery('')
                       }}
-                      className="px-3 py-2 text-sm text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 text-left"
                     >
                       {category.name}
                     </button>
                   ))}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         )}
-      </form>
+      </div>
     </div>
   )
 } 
