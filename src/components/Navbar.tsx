@@ -1,13 +1,22 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            Decor Haven
+        <div className="flex justify-between h-20 items-center">
+          <Link href="/" className="flex items-center">
+            <div className="relative w-48 h-12">
+              <Image
+                src="/images/logo.svg"
+                alt="Decor Haven"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
           
           <div className="hidden sm:flex space-x-8">

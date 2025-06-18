@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           className="h-full w-full object-cover opacity-60"
-          src="/images/hero-bg.jpg"
+          src="/images/hero-bg.png"
           alt="Decorative items background"
         />
       </div>
