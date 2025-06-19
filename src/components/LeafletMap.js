@@ -1,8 +1,11 @@
 "use client";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import 'leaflet-control-geocoder';
+
+import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 
 // Fix Leaflet's default icon paths (required in Next.js)
 delete L.Icon.Default.prototype._getIconUrl;
@@ -12,25 +15,51 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-export default function LeafletMap() {
-  useEffect(() => {
-    import('leaflet/dist/leaflet.css');
-  }, []);
+function GeocoderControl() {
+  const map = useMap(LeafletMap);
 
+  useEffect(() => {
+    if (!map) return;
+
+    const geocoder = L.Control.geocoder({
+      defaultMarkGeocode: true,
+    })
+      .on('markgeocode', function (e) {
+        const bbox = e.geocode.bbox;
+        const poly = L.polygon([
+          bbox.getSouthEast(),
+          bbox.getNorthEast(),
+          bbox.getNorthWest(),
+          bbox.getSouthWest(),
+        ]);
+        map.fitBounds(poly.getBounds());
+      })
+      .addTo(map);
+
+    return () => {
+      map.removeControl(geocoder);
+    };
+  }, [map]);
+
+  return null;
+}
+
+export default function LeafletMap() {
   return (
     <MapContainer
-      center={[28.6139, 77.2090]} // Delhi
+      center={[29.2183, 79.5130]} // Haldwani
       zoom={13}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       style={{ height: '400px', width: '100%' }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="© OpenStreetMap contributors"
+        attribution="&copy; © OpenStreetMap contributors"
       />
-      <Marker position={[28.6139, 77.2090]}>
+      <GeocoderControl />
+      <Marker position={[29.2183, 79.5130]}>
         <Popup>
-          This is Delhi 📍
+          This is Haldwani 📍
         </Popup>
       </Marker>
     </MapContainer>

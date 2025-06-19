@@ -15,7 +15,7 @@ export default function Home() {
       <Categories />
       <FeaturedProducts />
    <div>
-          <h1>Welcome to My Map Page</h1>
+          <h1>Enter your location here</h1>
           <LeafletMap />
       </div>
     </div>
