@@ -4,19 +4,19 @@ const categories = [
   {
     id: 1,
     name: 'Wall Art',
-    image: '/images/wall-art.jpg',
+    image: '/images/wall-art.png',
     href: '/category/wall-art',
   },
   {
     id: 2,
     name: 'Rugs',
-    image: '/images/rugs.jpg',
+    image: '/images/rugs.png',
     href: '/category/rugs',
   },
   {
     id: 3,
     name: 'Mirrors',
-    image: '/images/mirrors.jpg',
+    image: '/images/mirrors.png',
     href: '/category/mirrors',
   },
   {
