@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import WebSpeech from "./WebSpeech"; 
+
 
 const popularCategories = [
   { name: 'Wall Art', href: '/category/wall-art' },
@@ -60,7 +62,8 @@ export default function SearchBar() {
             onFocus={() => setShowSuggestions(true)}
             className="w-full bg-white rounded-lg pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary"
             placeholder="Search for products..."
-          />
+          /><WebSpeech onSearch={(spoken) => setQuery(spoken)} />
+
           <button
             type="submit"
             className="absolute inset-y-0 right-0 pr-3 flex items-center"
@@ -99,6 +102,7 @@ export default function SearchBar() {
               {filteredProducts.length === 0 && (
                 <p className="text-sm text-gray-500 mt-2">No products found</p>
               )}
+              
 
               <div className="mt-4 pt-4 border-t">
                 <h3 className="text-sm font-medium text-gray-900">Categories</h3>

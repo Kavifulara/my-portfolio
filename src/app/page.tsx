@@ -5,6 +5,7 @@ import Categories from '@/components/Categories'
 import dynamic from 'next/dynamic';
 const LeafletMap = dynamic(() => import('../components/LeafletMap'), { ssr: false });
 
+
 export default function Home() {
   return (
     <div className="space-y-12">
@@ -19,5 +20,6 @@ export default function Home() {
           <LeafletMap />
       </div>
     </div>
+    
   )
 } 
